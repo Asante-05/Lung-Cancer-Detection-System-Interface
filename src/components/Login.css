@@ -1,0 +1,54 @@
+.logIn {
+    text-align: left;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 3%;
+    color: black;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -50%);
+   
+
+}
+h1 {
+    font-weight: 100;
+    margin-top: 5px;
+}
+#title {  
+    font-weight: 400;
+}
+.userName h5 {
+    margin: 0px;
+    font-size: medium;
+}
+.password h5{
+    margin: 0px;
+    font-size: medium;
+    margin-top: 10px;
+}
+#text_area {
+    width: 250px;
+    height: 30px;
+    
+}
+.checkBox input{
+    margin-top: 20px;
+    text-align: 60px;
+    font-size: small;
+}
+.logInButton {
+    margin: auto;
+}
+button {
+    margin-top: 20px;
+    width: 250px;
+    color: white;
+    background-color: rgb(68, 68, 254);
+}
+.bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: small;
+}
