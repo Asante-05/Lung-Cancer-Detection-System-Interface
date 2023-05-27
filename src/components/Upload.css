@@ -1,0 +1,61 @@
+
+.mainBody {
+    margin: 8% 28%;
+    padding: 2%;
+    width: 35%;
+    border-radius: 15px;
+    background-color:#fefeff;
+}
+.mainBody h2{
+    margin-bottom: 20px;
+    font-weight: medium;
+}
+.mainBody .header {
+    margin-bottom: 50px;
+}
+.mainBody .header input{
+    background-color: f5f7ff;
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+
+}
+.mainBody .header h3{
+    font-weight: lighter;
+}
+.dropZone {
+    display: flex;
+    background-color: #f5f7ff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    border: 4px dashed black;
+    padding: 20px;;
+}
+
+.mainBody .button{
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    
+}
+button#\32{
+    color: #f5f7ff;
+    background-color: #1e4177;
+    width: 200px;
+    margin-left: 1%;
+    margin-top: 2%;
+    border-radius: 2px;
+}
+button#\31{
+    color: #1e4177;
+    background-color: #f5f7ff;
+    width: 200px;
+    margin-right: 1%;
+    margin-top: 2%;
+    border-radius: 2px;
+}
+
