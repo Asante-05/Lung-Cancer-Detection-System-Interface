@@ -1,69 +1,138 @@
 import "./Main.css";
-import uStryle from "./Upload.css"
 import Upload from "./Upload";
 import "reactjs-popup/dist/index.css";
 
 import profile from "../assets/aaa.jpeg";
 import { TfiSettings } from "react-icons/tfi";
 import { TfiDashboard } from "react-icons/tfi";
+import { AiOutlineUpload } from "react-icons/ai";
 import { FaClipboardList } from "react-icons/fa";
+import { HiArrowDown } from "react-icons/hi2";
 import { CgLogOut } from "react-icons/cg";
-import Popup from "reactjs-popup";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 function Main() {
   let headings = ["id", "name", "date", "scan ID", "RESULTS", "action"];
+
+  // _________________________________________________________________________
+
+  const [popupbtn, setpopupbtn] = useState(false);
+  const [logoutbtn, setlogoutbtn] = useState(false);
+
+  const [files, setFiles] = useState(null);
+
+  const inputRef = useRef();
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+  
+  const handleDrop = (event) => {
+    event?.preventDefault();
+    setFiles(event.dataTransfer.files);
+    console.log(files);
+  };
+
+  const handleUpload = () => {};
+
+  // _________________________________________________________________________
+
   return (
     <>
       <div className="main">
         <div className=" el sideBar">
           <div className="ads"></div>
+
           <ul className="listItems">
             <div id="em">
-              <TfiDashboard />
+              <TfiDashboard id="svg" />
               <li>Dashboard</li>
             </div>
+
             <div id="em">
-              <FaClipboardList />
+              <FaClipboardList id="svg" />
               <li>Patient's List</li>
             </div>
+
             <div id="em">
-              <TfiSettings />
+              <TfiSettings id="svg" />
               <li>Manage</li>
             </div>
-            <div id="em">
-              <CgLogOut className="logOut" />
-              <li className="logOut">Log Out</li>
+
+            <Link onClick={() => setlogoutbtn(true)}>
+              <div id="em">
+                <CgLogOut id="logout" />
+                <li id="logout">Log Out</li>
+              </div>
+            </Link>
+
+            <div>
+              <Logout trigger={logoutbtn} setTrigger={setlogoutbtn}>
+                <div className="logout-message">
+                  <h1>Are your sure?</h1>
+                </div>
+              </Logout>
             </div>
           </ul>
         </div>
+
         <div className="el mainArea">
           <nav className="header">
-            <label className="userName">Welcome, Dr. Rashid</label>
-            <ul>
-              <li>
-                <img src={profile} id="profileImage" alt="profile"></img>
-              </li>
-              <li>
+            <div>
+              <label className="userName">Welcome, Dr. Rashid</label>
+              <ul>
+                <li>
+                  <button onClick={() => setpopupbtn(true)}>
+                    New Analysis
+                  </button>
+                  <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
+                    <div className="mainBody">
+                      <h2>Upload Scan</h2>
+                      <div className="header">
+                        <h3>Enter Patient ID</h3>
+                        <input
+                          id="id"
+                          type="text"
+                          placeholder="FAD21222"
+                        ></input>
+                      </div>
 
-
-
-                
-
-                <Popup trigger={<button>New Analysis</button>}>
-                  {
-                    <div className="popup">
-                      <Upload/>
+                      {!files && (
+                        <div
+                          className="dropZone"
+                          onDragOver={handleDragOver}
+                          onDrop={handleDrop}
+                        >
+                          <h1 id="dropzonetxt">Drop File here</h1>
+                          <h1 id="dropzonetxt"> or </h1>
+                          <input
+                            hidden
+                            type="file "
+                            ref={inputRef}
+                            onChange={(event) => setFiles(event.target.files)}
+                          />
+                          <div className="uploadBtn">
+                            <AiOutlineUpload
+                              onClick={() => inputRef.current.click()}
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  }
-                </Popup>
+                  </Upload>
 
-
-
-
-
-                <div id="popup-root" />
-              </li>
-            </ul>
+                  <div id="popup-root" />
+                </li>
+                <li>
+                  <img src={profile} id="profileImage" alt="profile"></img>
+                </li>
+                <li id="dropDownArrow">
+                  <HiArrowDown />
+                </li>
+              </ul>
+            </div>
           </nav>
 
           <div className="mainList">

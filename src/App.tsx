@@ -1,5 +1,4 @@
 import "./App.css";
-
 import Upload from './components/Upload';
 import Login from "./components/Login";
 import Main from './components/Main';

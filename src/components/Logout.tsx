@@ -1,16 +1,22 @@
 import { useRef, useState } from "react";
-import "./Upload.css";
-function Upload(props) {
+import "./Logout.css";
+import { Link } from "react-router-dom";
+
+
+function Logout(props) {
   return props.trigger ? (
     <>
-      <div className="Upload">
-        <div className="Upload-inner">
+      <div className="Logout">
+        <div className="Logout-inner">
           {props.children}
           <div className="button">
+            
             <button onClick={() => props.setTrigger(false)} id="1">
               Cancel
             </button>
-            <button id="2">Start</button>
+            <Link to={'/'}>
+            <button  id="2">Log Out</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -20,4 +26,4 @@ function Upload(props) {
   );
 }
 
-export default Upload;
+export default Logout;

@@ -1,11 +1,12 @@
 .logIn {
+    max-width: fit-content;
     text-align: left;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(118, 167, 214, 0.84);
     padding: 30px;
     border-radius: 3%;
-    color: black;
-
-    position: absolute;
+    color: rgb(255, 255, 255);
+    margin-top: 20%;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(0, -50%);
@@ -15,6 +16,7 @@
 h1 {
     font-weight: 100;
     margin-top: 5px;
+    margin-bottom: 10px;
 }
 #title {  
     font-weight: 400;
@@ -33,22 +35,21 @@ h1 {
     height: 30px;
     
 }
-.checkBox input{
-    margin-top: 20px;
-    text-align: 60px;
-    font-size: small;
+.checkBox {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
 }
+.checkBox #input{
+    width: 20px;
+}
+
+
 .logInButton {
-    margin: auto;
+    margin-top: 10%;
 }
-button {
-    margin-top: 20px;
-    width: 250px;
-    color: white;
-    background-color: rgb(68, 68, 254);
+.bottom_question {
+    margin-top: 5%;
+    margin-left: 25%;
 }
-.bottom {
-    margin-top: 30px;
-    text-align: center;
-    font-size: small;
-}
+

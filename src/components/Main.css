@@ -18,10 +18,14 @@
 }
 
 .ads {
-    height: 50px;
-    width: 120px;
+    margin-left: 15%;
+    margin-top: 10%;
+    border-radius: 15px;
+    height: 100px;
+    width: 220px;
     padding: 20px;
-    color: #e0e6ff;
+    background-color: #e0e6ff;
+    color: #0d1841;
 }
 
 .listItems {
@@ -29,16 +33,11 @@
     color: white;
     list-style-type: none;
 }
-#em {
-    display: flex;
-    flex-direction: row;
-    margin-top: 50px;
-}
+
+
 .logOut {
     margin-top: 90%;
 }
-
-
 
 .mainArea {
     height: 100vh;
@@ -59,17 +58,35 @@ nav .userName {
     
 }
 nav ul {
-    width: 40%;
+    width: 30%;
     float: right;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     display: flex;
     flex-direction: row;
 }
 nav ul li {
     display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
+    /* line-height: 40px; */
+    /* margin: 0 5px;  */
 }
+nav ul li button{
+    margin-top: 16px;
+}
+
+#profileImage {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-top: 16px;
+    margin-left: 16px;
+}
+#dropDownArrow {
+    line-height: 40px;
+    margin: 25px 5px;
+    font-size: large;
+
+}
+
 nav ul li a {
     font-size: 17px;
     text-transform: capitalize;
@@ -77,13 +94,7 @@ nav ul li a {
 button {
     width: 150px;
     margin-left: 0%;
-}
-#profileImage {
     height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-top: 16px;
-    margin-right: 0%;
 }
 
 .mainList {
@@ -104,4 +115,227 @@ button {
     margin: 5px;
     color: white;
 
+}
+#svg{
+    max-width: 60px;
+    margin-left: 20px;
+    margin: 0;
+}
+a {
+    margin: 0;
+    padding: 0;
+    font-color: white;
+    color: white;
+    max-height: 25px;
+}
+#em {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+ li .logOut {
+    padding: 0;
+    margin: 0;
+ }
+#logout {
+    max-width: 100px;
+    margin-left: 20px;
+    margin: 0;
+    margin-top: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* for the pop up */
+
+
+
+.mainBody {
+    border-radius: 15px;
+}
+.mainBody h2{
+    margin-bottom: 20px;
+    font-weight: medium;
+}
+.mainBody .header {
+    margin-bottom: 50px;
+}
+.mainBody .header input{
+    background-color: f5f7ff;
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+
+}
+.mainBody .header h3{
+    font-weight: lighter;
+}
+.dropZone {
+    display: flex;
+    background-color: #f5f7ff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    border: 4px dashed black;
+    padding: 20px;;
+}
+#dropzonetxt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mainBody .uploadBtn{
+    border: none;
+    color: #0d1841;
+    text-align: center;
+    text-decoration: none;
+    font-size: 50px;
+    /* padding: 4px; */
+    width: auto;
+    /* background-color: #0d1841; */
+    
+}
+.mainBody .uploadBtn :hover{
+    /* box-shadow: 10px 10px 10p rgba(0, 0, 0, 0.3); */
+    border: none;
+    color: #f5f7ff;
+    background-color: #1e4177;
+
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 50px;
+    
+}
+button#\32{
+    color: #f5f7ff;
+    background-color: #1e4177;
+    width: 200px;
+    margin-left: 20%;
+    margin-top: 2%;
+    border-radius: 2px;
+}
+button#\31{
+    color: #1e4177;
+    background-color: #f5f7ff;
+    width: 200px;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-radius: 2px;
+}
+
+
+
+
+
+/*  for logout pop Up */
+
+
+.logout-message {
+    color: black;
+    margin-left: 5%;
 }
