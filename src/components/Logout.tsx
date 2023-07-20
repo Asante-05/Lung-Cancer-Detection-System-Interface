@@ -22,7 +22,7 @@ function Logout(props) {
       </div>
     </>
   ) : (
-    ""
+    <div></div>
   );
 }
 

@@ -1,21 +1,22 @@
 import "./App.css";
-import Upload from './components/Upload';
 import Login from "./components/Login";
 import Main from './components/Main';
+import './App.css'
+import SignUp from './components/Signup'
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <>
-      <div className="app">
+    <div className="app">
 
+      
         <Routes>
-          {/* <Route path="/" element={<Upload/>}/>  */}
+          <Route path="/" element={<Login/>}/> 
           
-          <Route path="/" element ={<Login />}/>
           <Route path="/Main" element ={<Main />}/>
+          <Route path="/signup" element={<SignUp/>} />
         </Routes>
-      </div>
-    </>
+        </div>
+
   );
 }
 

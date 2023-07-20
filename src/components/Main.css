@@ -1,6 +1,5 @@
  * {
     width: 100%;
-    box-sizing: border-box;
  }
  .main {
     align-items: left;
@@ -95,6 +94,11 @@ button {
     width: 150px;
     margin-left: 0%;
     height: 50px;
+    background-color: #3360FF;
+    color: white;
+}
+button :hover {
+    background-color: #132159
 }
 
 .mainList {
@@ -124,7 +128,6 @@ button {
 a {
     margin: 0;
     padding: 0;
-    font-color: white;
     color: white;
     max-height: 25px;
 }
@@ -144,105 +147,6 @@ a {
     margin: 0;
     margin-top: 90%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

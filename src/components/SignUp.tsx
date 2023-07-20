@@ -1,8 +1,6 @@
-import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import "./SignUp.css";
 
-function Login() {
-  const navigate = useNavigate();
+function SignUp() {
   return (
     <>
       <div className="overlay  overlay_0">
@@ -12,7 +10,15 @@ function Login() {
           </div>
 
           <div className="signIn_info">
-           
+            <div className="signIn_email">
+              <h5 id="signIn_email_head">Email</h5>
+              <div className="input">
+                <input
+                  id="signIn_email_input"
+                  placeholder="hannah.green@gmail.com"
+                ></input>
+              </div>
+            </div>
 
             <div className="signIn_userName">
               <h5 id="header">User Name</h5>
@@ -33,7 +39,16 @@ function Login() {
             </div>
 
             
-            
+            <div className="signIn_password">
+              <h5 id="header">Confirm Password</h5>
+              <div className="input">
+                <input
+                  type="text"
+                  id="signIn_password_input"
+                  placeholder="Password123@"
+                ></input>
+              </div>
+            </div>
 
             <div className="remember">
               <input type="checkbox" id="check"></input>
@@ -43,32 +58,13 @@ function Login() {
             <div className="register_button">
               <button id="r_button" onClick={() => navigate("/Main")}>
                 {" "}
-                Log In{" "}
+                Register{" "}
               </button>
             </div>
           </div>
-
-          <div className="footer">
-
-          <div className="forgot_password">
-            <h5>forgot password?</h5>
-          </div>
-
-            <Link to='/signup'>
-          <div className="signUp_link">
-            <h5>Don't have an account? <strong>Sign up</strong></h5>
-          </div>
-            </Link>
-          </div>
-
         </div>
       </div>
     </>
-        // <div className="bottom_question">
-        //   <h5>forgot password?</h5>
-        //   <Link to='/signup'>Don't have an account? <b>Sign Up</b></Link>
-        // </div>
-     
   );
 }
-export default Login;
+export default SignUp;

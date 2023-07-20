@@ -16,7 +16,7 @@ function Upload(props) {
       </div>
     </>
   ) : (
-    ""
+    <div></div>
   );
 }
 

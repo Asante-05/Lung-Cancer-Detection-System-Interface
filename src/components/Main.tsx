@@ -79,14 +79,18 @@ function Main() {
         </div>
 
         <div className="el mainArea">
+          
           <nav className="header">
             <div>
               <label className="userName">Welcome, Dr. Rashid</label>
               <ul>
                 <li>
+
                   <button onClick={() => setpopupbtn(true)}>
                     New Analysis
                   </button>
+
+
                   <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
                     <div className="mainBody">
                       <h2>Upload Scan</h2>
@@ -122,6 +126,7 @@ function Main() {
                       )}
                     </div>
                   </Upload>
+  
 
                   <div id="popup-root" />
                 </li>
@@ -133,6 +138,7 @@ function Main() {
                 </li>
               </ul>
             </div>
+
           </nav>
 
           <div className="mainList">
@@ -142,6 +148,12 @@ function Main() {
               ))}
             </ul>
           </div>
+
+          <div>
+            <h1><h1>Reslts</h1></h1>
+          </div>
+
+
         </div>
       </div>
     </>

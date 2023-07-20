@@ -23,7 +23,7 @@ body{
     display: flex;
     width: 522px;
     height: auto;
-    padding: 40px 40px;
+    padding: 60px 40px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,54 @@ body{
 
 
 
+.signIn_info .signIn_email {
 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    align-self: stretch;
+}
+
+.signIn .signIn_info .signIn_email #signIn_email_head{
+
+    color: #000;
+
+    /* material-theme/label/medium 14 */
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+}
+
+
+
+.signIn .signIn_info .signIn_email .input {
+    display: flex;
+    padding: 8px 6px;
+    align-items: center;
+
+    align-self: stretch;
+
+    border-radius: 5px;
+    border: 1px solid var(--line, #EAEAEA);
+    background: #FAFAFA;
+
+
+}
+.signIn .signIn_info .signIn_email .input #signIn_email_input {
+    color: var(--text-off, #828282);
+
+    /* material-theme/label/medium 16 */
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.15px;
+    border: none;
+    flex: 1 0 0;
+}
 
 
 
@@ -182,7 +229,6 @@ background: #FAFAFA;
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    width: auto;
 
     border-radius: 5px;
     background: #3360FF;
@@ -203,21 +249,5 @@ background: #FAFAFA;
     font-weight: 600;
     letter-spacing: 0.15px;
     text-transform: uppercase;
-
-}
-
-
-.signUp_link {
-    color:#000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 200;
-
-    
-}
-.signUp_link strong{
-    text-decoration: underline;
-    font-weight: 600;
 
 }
