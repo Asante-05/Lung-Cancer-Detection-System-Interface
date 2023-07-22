@@ -1,5 +1,6 @@
  * {
     width: 100%;
+    
  }
  .main {
     align-items: left;
@@ -41,7 +42,6 @@
 .mainArea {
     height: 100vh;
     background-color: #fafbfd;
-    border-radius: 5%;
 }
 nav {
     background: #e0e6ff;
@@ -90,7 +90,7 @@ nav ul li a {
     font-size: 17px;
     text-transform: capitalize;
 }
-button {
+#upload_button {
     width: 150px;
     margin-left: 0%;
     height: 50px;
@@ -104,7 +104,7 @@ button :hover {
 .mainList {
     margin-top: 20px;
     margin-left: 100px;
-    padding: 20px;
+    padding: 2px;
     background-color: #132159;
     border-radius: 10px;
     width: 80%;
@@ -120,33 +120,41 @@ button :hover {
     color: white;
 
 }
-#svg{
-    max-width: 60px;
-    margin-left: 20px;
-    margin: 0;
-}
+
 a {
     margin: 0;
     padding: 0;
     color: white;
     max-height: 25px;
 }
+
+.options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 150px;
+}
+.options-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+
 #em {
     display: flex;
     flex-direction: row;
     margin-top: 50px;
+    text-decoration: none;
+    color: white;
+}
+#svg {
+    width: 25px;
+    height: 25px;
+    margin: 0 50px;
 }
 
- li .logOut {
-    padding: 0;
-    margin: 0;
- }
-#logout {
-    max-width: 100px;
-    margin-left: 20px;
-    margin: 0;
-    margin-top: 90%;
-}
 
 
 
@@ -154,7 +162,9 @@ a {
 /* for the pop up */
 
 
-
+.mainArea .mainHeader {
+    padding: 0px 0px 10px 0px;
+}
 .mainBody {
     border-radius: 15px;
 }
@@ -164,6 +174,8 @@ a {
 }
 .mainBody .header {
     margin-bottom: 50px;
+    display: flex;
+    
 }
 .mainBody .header input{
     background-color: f5f7ff;
@@ -181,7 +193,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 160px;
+    height: auto;
     border: 4px dashed black;
     padding: 20px;;
 }
@@ -231,6 +243,22 @@ button#\31{
     margin-top: 2%;
     border-radius: 2px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

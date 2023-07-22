@@ -1,4 +1,3 @@
-
 body{
     background-image: url("/src/assets/pre.jpg");
     background-size: cover; 
@@ -15,15 +14,15 @@ body{
     position: absolute;
 }
 
-.signIn {
+.logIn {
  
     margin-left: 50%;
     margin-top: 6%;
     
     display: flex;
-    width: 522px;
+    width: 350px;
     height: auto;
-    padding: 40px 40px;
+    padding: 40px 25px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -31,9 +30,8 @@ body{
     border-radius: 12px;
     background: #FFF;
 }
-
-
-.signIn .signIn_text {
+.logIn .logIn_text {
+    
     align-self: stretch;
     color: #000;
 
@@ -41,34 +39,25 @@ body{
     font-family: Open Sans;
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+
     line-height: 12px; /* 115.556% */
     
 }
-.signIn_info {
+.logIn_info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 3px;
     align-self: stretch;
 }
 
-
-
-
-
-
-
-
-.signIn_info .signIn_userName {
+.logIn_info .logIn_userName {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
 }
-
-
-.signIn .signIn_info .signIn_userName #header{
+.logIn .logIn_info .logIn_userName #header{
     color: #000;
     
     /* material-theme/label/medium 14 */
@@ -78,8 +67,7 @@ body{
     font-weight: 400;
     letter-spacing: 0.25px;
 }
-
-.signIn .signIn_info .signIn_userName .input {
+.logIn .logIn_info .logIn_userName .input {
     display: flex;
     padding: 8px 6px;
     align-items: center;
@@ -90,9 +78,7 @@ body{
     background: #FAFAFA;
 }
 
-
-
-.signIn .signIn_info .signIn_userName .input #signIn_userName_Input {
+.logIn .logIn_info .logIn_userName .input #logIn_userName_Input {
     color: var(--text-off, #828282);
     
     /* material-theme/label/medium 16 */
@@ -106,15 +92,13 @@ body{
 }
 
 
-
-
-.signIn_info .signIn_password {
+.logIn_info .logIn_password {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
 }
-.signIn .signIn_info .signIn_password #header{
+.logIn .logIn_info .logIn_password #header{
     color: #000;
     
     /* material-theme/label/medium 14 */
@@ -124,7 +108,7 @@ body{
     font-weight: 400;
     letter-spacing: 0.25px;
 }
-.signIn .signIn_info .signIn_password .input {
+.logIn .logIn_info .logIn_password .input {
     display: flex;
     padding: 8px 6px;
     align-items: center;
@@ -137,8 +121,7 @@ background: #FAFAFA;
 }
 
 
-
-.signIn .signIn_info .signIn_password .input #signIn_password_input {
+.logIn .logIn_info .logIn_password .input #logIn_password_input {
     color: var(--text-off, #828282);
     
     /* material-theme/label/medium 16 */
@@ -152,19 +135,16 @@ background: #FAFAFA;
 
     border: none;
 }
-
-
-.signIn .signIn_info .remember{
+.logIn .logIn_info .remember{
     display: flex;
     align-items: flex-start;
     align-self: stretch;
 }
-.signIn .signIn_info .remember input{
+.logIn .logIn_info .remember input{
     width: 12px;
     height: 12px;
 }
-
-.signIn .signIn_info .remember #checkbox{
+.logIn .logIn_info .remember #checkbox{
     color: #000;
 
     /* material-theme/label/medium 14 */
@@ -176,19 +156,21 @@ background: #FAFAFA;
     letter-spacing: 0.25px;
 }
 
-.signIn .signIn_info .register_button{
+
+
+
+
+.logIn .logIn_button{
     display: flex;
     padding: 9px 16px;
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    width: auto;
 
     border-radius: 5px;
     background: #3360FF;
-
 }
-.signIn .signIn_info .register_button #r_button{
+.logIn .logIn_button #l_button{
     width: 100%;
     height: 20%;
     border: none;
@@ -203,21 +185,13 @@ background: #FAFAFA;
     font-weight: 600;
     letter-spacing: 0.15px;
     text-transform: uppercase;
-
 }
 
 
-.signUp_link {
-    color:#000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 200;
-
-    
+.logIn .footer .forgot_password {
+    columns: black;
 }
-.signUp_link strong{
-    text-decoration: underline;
-    font-weight: 600;
 
+.logIn .footer .signUp_link {
+    color: #000;
 }

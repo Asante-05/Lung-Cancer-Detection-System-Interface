@@ -28,7 +28,7 @@ function Main() {
   const handleDragOver = (event) => {
     event.preventDefault();
   };
-  
+
   const handleDrop = (event) => {
     event?.preventDefault();
     setFiles(event.dataTransfer.files);
@@ -45,29 +45,35 @@ function Main() {
         <div className=" el sideBar">
           <div className="ads"></div>
 
-          <ul className="listItems">
-            <div id="em">
-              <TfiDashboard id="svg" />
-              <li>Dashboard</li>
-            </div>
 
-            <div id="em">
-              <FaClipboardList id="svg" />
-              <li>Patient's List</li>
-            </div>
-
-            <div id="em">
-              <TfiSettings id="svg" />
-              <li>Manage</li>
-            </div>
-
-            <Link onClick={() => setlogoutbtn(true)}>
+          <div className="options">
+            <div className="options-top">
               <div id="em">
-                <CgLogOut id="logout" />
-                <li id="logout">Log Out</li>
+                <TfiDashboard id="svg" />
+                <span>Dashboard</span>
+              </div>
+
+              <div id="em">
+                <FaClipboardList id="svg" />
+                <span>Patient's List</span>
+              </div>
+
+              <div id="em">
+                <TfiSettings id="svg" />
+                <span>Manage</span>
+              </div>
+            </div>
+
+            <Link to="" onClick={() => setlogoutbtn(true)}>
+              <div id="em">
+                <CgLogOut id="svg" />
+                <span id="logout">Log Out</span>
               </div>
             </Link>
+          </div>
 
+
+          <ul className="listItems">
             <div>
               <Logout trigger={logoutbtn} setTrigger={setlogoutbtn}>
                 <div className="logout-message">
@@ -79,17 +85,14 @@ function Main() {
         </div>
 
         <div className="el mainArea">
-          
-          <nav className="header">
+          <nav className="mainHeader">
             <div>
               <label className="userName">Welcome, Dr. Rashid</label>
               <ul>
                 <li>
-
-                  <button onClick={() => setpopupbtn(true)}>
+                  <button id="upload_button" onClick={() => setpopupbtn(true)}>
                     New Analysis
                   </button>
-
 
                   <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
                     <div className="mainBody">
@@ -126,7 +129,6 @@ function Main() {
                       )}
                     </div>
                   </Upload>
-  
 
                   <div id="popup-root" />
                 </li>
@@ -138,7 +140,6 @@ function Main() {
                 </li>
               </ul>
             </div>
-
           </nav>
 
           <div className="mainList">
@@ -150,10 +151,13 @@ function Main() {
           </div>
 
           <div>
-            <h1><h1>Reslts</h1></h1>
+            <div>
+              <>
+
+              <h1>Reslts</h1>
+              </>
+            </div>
           </div>
-
-
         </div>
       </div>
     </>
