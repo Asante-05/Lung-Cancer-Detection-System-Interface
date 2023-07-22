@@ -1,33 +1,34 @@
-import { Navigate } from "react-router-dom";
+
 import { useState } from "react";
 import "./SignUp.css";
-import { handleSignup } from "../services/services";
+import { signupUser } from "../services/services";
 
 
 function SignUp() {
   const [userName , setUserName] = useState('')
   const [email , setEmail] = useState('')
   const [password , setpassword] = useState('')
+
+
   const [error, setError] = useState('')
   const [signUpState, setSignUpState] = useState(false)
 
 
-const handleSignUpClick = async () => {
-  setError('')
-  const {success, message, data} = await handleSignup(email, userName, password);
-
-  if (success) {
+const handleSignUpClick = async (event) => {
+  event.preventDefault()
+  try{
+  const data = await signupUser(email, userName, password,);
     setSignUpState(true)
-    window.location.href = './Main'
-    console.log("Sign Up successfull");
-  } else {
-    setError(message)
+    window.location.href = '/'
+  
+  } 
+  catch (error) {
+
   }
+
 }
 
-console.log(email)
-console.log(userName)
-console.log(password)
+
 
 
 
