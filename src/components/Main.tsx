@@ -12,6 +12,8 @@ import { CgLogOut } from "react-icons/cg";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import { Results } from "./Results";
+import { List } from "./List";
 
 function Main() {
   let headings = ["id", "name", "date", "scan ID", "RESULTS", "action"];
@@ -150,14 +152,30 @@ function Main() {
             </ul>
           </div>
 
-          <div>
-            <div>
+
+
+
+
+          <div className="list">
+            <div className="list-inner">
               <>
 
-              <h1>Reslts</h1>
+              {/* <Results/> */}
+              <List/>
+              <List/>
+              <List/>
+              <List/>
+              <List/>
+              <List/>
+              <List/>
+              
               </>
             </div>
           </div>
+
+
+
+
         </div>
       </div>
     </>

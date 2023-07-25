@@ -1,0 +1,43 @@
+.results_detail {
+    display: flex;
+}
+
+.results_img img{
+    height: 400px;
+    width: 350px;
+}
+.results_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.results_patientInfo {
+    display: flex;
+}
+.results_input textarea{
+    height: 150px;
+    border-radius: 10px;
+}
+.results_buttons {
+    display: flex;
+    gap: 10px;
+}
+.results_buttons button {
+    width: 196px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+   
+}
+.results_buttons  #1{
+    background-color:  #3360FF;
+}
+.results_buttons #2{
+    color: black;
+    background-color: #E7EBF2;
+}
+#detail_top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

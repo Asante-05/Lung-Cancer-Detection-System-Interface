@@ -246,8 +246,23 @@ button#\31{
 
 
 
+/* for the list */
+
+.list {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    
+}
+.list-inner{
 
 
+    padding: 10px;
+
+    height: 100vh;
+    margin-top: 5px;
+    width: 75%;
+}
 
 
 
