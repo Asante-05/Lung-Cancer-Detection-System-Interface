@@ -1,5 +1,5 @@
 import "./Results.css";
-import cImage from '../assets/d.png'
+import cImage from '../assets/lungImage.jpg'
 export function Results() {
   return (
     <>
@@ -28,7 +28,7 @@ export function Results() {
                 <span>Michael Bale</span>
                 <span>M</span>
                 <span>Positive</span>
-                <span>Benign</span>
+                <span>Malignanat</span>
               </div>
             </div>
 

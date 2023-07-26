@@ -160,14 +160,14 @@ function Main() {
             <div className="list-inner">
               <>
 
-              {/* <Results/> */}
+              <Results/>
+              {/* <List/>
               <List/>
               <List/>
               <List/>
               <List/>
               <List/>
-              <List/>
-              <List/>
+              <List/> */}
               
               </>
             </div>
