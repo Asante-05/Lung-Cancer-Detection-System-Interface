@@ -3,8 +3,37 @@ import axios from 'axios';
 
 
 
-let feedback = null
+let feedback_fromLogIN = null
+let feedback_fromUpload = null
 
+
+
+
+
+
+
+
+
+export const uploadFile = (patient_id: string, image: File) => {
+
+
+  const patient_formData = new FormData();
+  patient_formData.append('patient', patient_id);
+  patient_formData.append('image', image);
+
+  // console.log(patient_formData.get('image'))
+  
+
+  // Replace 'your-upload-url' with the actual endpoint to upload the file on your server
+  return fetch('http://127.0.0.1:8000/patient/analyse/', {
+    method: 'POST',
+    body: patient_formData,
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      throw new Error('Error sending file to server:', error);
+    });
+};
 
 
 
@@ -23,7 +52,7 @@ export async function loginUser(user_email: string, user_password: string) {
       },
       body: JSON.stringify(loginData),
     });
-    feedback = response
+    feedback_fromLogIN = response
     if (!response.ok) {
       // return response
     }else{
@@ -37,7 +66,7 @@ export async function loginUser(user_email: string, user_password: string) {
   }
 
 };
-export default feedback
+export default feedback_fromLogIN
 
 
 
@@ -75,6 +104,14 @@ export async function signupUser (signup_email:string ,signup_username:string, s
   }
 
 };
+
+
+
+
+
+// upload
+
+
 
 
 

@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { Results } from "./Results";
 import { List } from "./List";
+import { uploadFile } from "../services/services";
 
 function Main() {
   let headings = ["id", "name", "date", "scan ID", "RESULTS", "action"];
@@ -23,30 +24,50 @@ function Main() {
   const [popupbtn, setpopupbtn] = useState(false);
   const [logoutbtn, setlogoutbtn] = useState(false);
 
-  const [files, setFiles] = useState(null);
-
-  const inputRef = useRef();
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event) => {
-    event?.preventDefault();
-    setFiles(event.dataTransfer.files);
-    console.log(files);
-  };
-
-  const handleUpload = () => {};
-
   // _________________________________________________________________________
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
+  const [patient_id, setPatient_id] = useState('')
+
+
+
+  
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+ 
+
+
+  const handleFileUpload = () => {
+    if (selectedFile) {
+      uploadFile(patient_id, selectedFile)
+        .then((data) => {
+          console.log("File uploaded successfully:", data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  
+  };
+
+  const startAnalysis = () => {
+    handleFileUpload()
+    setpopupbtn(false)
+  }
+
+
+  const openFileDialog = () => {
+    fileInputRef.current.click();
+  };
 
   return (
     <>
       <div className="main">
         <div className=" el sideBar">
           <div className="ads"></div>
-
 
           <div className="options">
             <div className="options-top">
@@ -74,7 +95,6 @@ function Main() {
             </Link>
           </div>
 
-
           <ul className="listItems">
             <div>
               <Logout trigger={logoutbtn} setTrigger={setlogoutbtn}>
@@ -98,37 +118,48 @@ function Main() {
 
                   <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
                     <div className="mainBody">
-                      <h2>Upload Scan</h2>
+                      {popupbtn && (<>
+                        <h2>Upload Scan</h2>
                       <div className="header">
                         <h3>Enter Patient ID</h3>
                         <input
+                          value={patient_id}
+                          onChange={(event) => setPatient_id(event.target.value)}
                           id="id"
                           type="text"
-                          placeholder="FAD21222"
+                          placeholder="FA-2128-22"
                         ></input>
                       </div>
 
-                      {!files && (
-                        <div
-                          className="dropZone"
-                          onDragOver={handleDragOver}
-                          onDrop={handleDrop}
-                        >
-                          <h1 id="dropzonetxt">Drop File here</h1>
-                          <h1 id="dropzonetxt"> or </h1>
-                          <input
-                            hidden
-                            type="file "
-                            ref={inputRef}
-                            onChange={(event) => setFiles(event.target.files)}
-                          />
-                          <div className="uploadBtn">
-                            <AiOutlineUpload
-                              onClick={() => inputRef.current.click()}
-                            />
+                      
+                        <div>
+                          <div className="dropZone">
+                            <h1 id="dropzonetxt">Drop File here</h1>
+                            <h1 id="dropzonetxt"> or </h1>
+                            <div>
+                              <input
+                                type="file"
+                                ref={fileInputRef}
+                                style={{ display: "none" }}
+                                onChange={handleFileChange}
+                              />
+                              <button className="uploadBtn" onClick={openFileDialog}>
+                                {/* Replace 'your-custom-icon.svg' with your custom icon */}
+                                <img
+                                  src="use an svg"
+                                  alt="Up"
+                                />
+                              </button>
+                            </div>
+
+                            
+                          </div>
+                          <div className="button">
+                            <button id="1" onClick={() => setpopupbtn(false)}>Cancel</button>
+                            <button id="2" onClick={() => startAnalysis()}>Start</button>
                           </div>
                         </div>
-                      )}
+                      </>)}
                     </div>
                   </Upload>
 
@@ -152,30 +183,20 @@ function Main() {
             </ul>
           </div>
 
-
-
-
-
           <div className="list">
             <div className="list-inner">
               <>
-
-              <Results/>
-              {/* <List/>
+                {/* <Results/> */}
+                {/* <List/>
               <List/>
               <List/>
               <List/>
               <List/>
               <List/>
               <List/> */}
-              
               </>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </>
