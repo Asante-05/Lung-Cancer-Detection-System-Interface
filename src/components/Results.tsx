@@ -1,6 +1,25 @@
 import "./Results.css";
 import cImage from '../assets/lungImage.jpg'
-export function Results() {
+import { useNavigate } from "react-router-dom";
+
+import { ResultsContext } from "../Context/StateProvider";
+import { useContext } from "react";
+
+export function Results({result, setReultReady}) {
+
+  const navigate = useNavigate()
+
+  const { items, addItem } = useContext(ResultsContext)
+  console.log(items)
+
+  const handleSave = () => {
+    addItem(result)
+    console.log(result)
+    setReultReady((prev) => !prev)
+    console.log(items)
+ }
+
+
   return (
     <>
       <div className="results_mainBody">
@@ -9,7 +28,8 @@ export function Results() {
         </div>
         <div className="results_detail">
           <div className="results_img">
-            <img src={cImage} alt="cancer image"></img>
+
+            <img src="" alt="cancer image"></img>
           </div>
 
           <div className="results_info">
@@ -24,11 +44,11 @@ export function Results() {
               </div>
             
               <div id="detail_top">
-                <span>MA1231</span>
-                <span>Michael Bale</span>
-                <span>M</span>
-                <span>Positive</span>
-                <span>Malignanat</span>
+                <span>{result.patient_id}</span>
+                <span>{result.patient_name}</span>
+                <span>{result.gender}</span>
+                <span>{result.prediction === "Malignant" ? 'Positive' : 'Negative'}</span>
+                <span>{result.prediction}</span>
               </div>
             </div>
 
@@ -37,7 +57,7 @@ export function Results() {
               <textarea name="remarks"></textarea>
             </div>
             <div className="results_buttons">
-              <button id="1">Save</button>
+              <button id="1" onClick={handleSave}>Save</button>
               <button id="2">Print Results</button>
             </div>
           </div>

@@ -56,7 +56,7 @@ const handleSignUpClick = async (event) => {
             </div>
 
             <div className="signIn_userName">
-              <h5 id="header">User Name</h5>
+              <h5 id="header">Username</h5>
               <div className="input">
                 <input
                 value={userName}
@@ -91,10 +91,7 @@ const handleSignUpClick = async (event) => {
               </div>
             </div>
 
-            <div className="remember">
-              <input type="checkbox" id="check"></input>
-              <label>Remember me on this page</label>
-            </div>
+         
 
             <div className="register_button">
               <button 

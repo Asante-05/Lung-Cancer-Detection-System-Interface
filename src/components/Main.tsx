@@ -12,52 +12,44 @@ import { CgLogOut } from "react-icons/cg";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import { LoadingComponent } from "./LoadingCompoenet";
 import { Results } from "./Results";
 import { List } from "./List";
 import { uploadFile } from "../services/services";
 
 function Main() {
-  let headings = ["id", "name", "date", "scan ID", "RESULTS", "action"];
+  let headings = ["id", "name", "date", "RESULTS", "action"];
 
   // _________________________________________________________________________
 
   const [popupbtn, setpopupbtn] = useState(false);
   const [logoutbtn, setlogoutbtn] = useState(false);
-
-  // _________________________________________________________________________
-
+  const [resultReady, setResultReady] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
-  const [patient_id, setPatient_id] = useState('')
+  const [patient_id, setPatient_id] = useState("");
+  const [r, setR] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-
-
-  
+  // _________________________________________________________________________
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-
- 
-
 
   const handleFileUpload = () => {
     if (selectedFile) {
       uploadFile(patient_id, selectedFile)
         .then((data) => {
-          console.log("File uploaded successfully:", data);
+          
+          setR(data);
+          setResultReady(true);
         })
         .catch((error) => {
-          console.error(error);
+          alert(error);
         });
     }
-  
+    setpopupbtn(false);
   };
-
-  const startAnalysis = () => {
-    handleFileUpload()
-    setpopupbtn(false)
-  }
-
 
   const openFileDialog = () => {
     fileInputRef.current.click();
@@ -67,7 +59,7 @@ function Main() {
     <>
       <div className="main">
         <div className=" el sideBar">
-          <div className="ads"></div>
+          <div className="ads">LUNGNET</div>
 
           <div className="options">
             <div className="options-top">
@@ -107,96 +99,104 @@ function Main() {
         </div>
 
         <div className="el mainArea">
-          <nav className="mainHeader">
+          <div className="mainHeader">
             <div>
               <label className="userName">Welcome, Dr. Rashid</label>
-              <ul>
-                <li>
-                  <button id="upload_button" onClick={() => setpopupbtn(true)}>
-                    New Analysis
-                  </button>
+            </div>
 
-                  <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
-                    <div className="mainBody">
-                      {popupbtn && (<>
-                        <h2>Upload Scan</h2>
-                      <div className="header">
-                        <h3>Enter Patient ID</h3>
-                        <input
-                          value={patient_id}
-                          onChange={(event) => setPatient_id(event.target.value)}
-                          id="id"
-                          type="text"
-                          placeholder="FA-2128-22"
-                        ></input>
-                      </div>
+            <div className="mainHeader-left">
+              <button id="upload_button" onClick={() => setpopupbtn(true)}>
+                New Analysis
+              </button>
 
-                      
-                        <div>
-                          <div className="dropZone">
-                            <h1 id="dropzonetxt">Drop File here</h1>
-                            <h1 id="dropzonetxt"> or </h1>
-                            <div>
-                              <input
-                                type="file"
-                                ref={fileInputRef}
-                                style={{ display: "none" }}
-                                onChange={handleFileChange}
-                              />
-                              <button className="uploadBtn" onClick={openFileDialog}>
-                                {/* Replace 'your-custom-icon.svg' with your custom icon */}
-                                <img
-                                  src="use an svg"
-                                  alt="Up"
-                                />
-                              </button>
-                            </div>
+              <img src={profile} id="profileImage" alt="profile"></img>
 
-                            
-                          </div>
-                          <div className="button">
-                            <button id="1" onClick={() => setpopupbtn(false)}>Cancel</button>
-                            <button id="2" onClick={() => startAnalysis()}>Start</button>
-                          </div>
-                        </div>
-                      </>)}
+              <HiArrowDown id="dropDownArrow" />
+            </div>
+          </div>
+          {<div className="loading-component"><LoadingComponent /></div>}
+          {
+            <>
+              {!resultReady && (
+                <>
+                  <div className="mainList">
+                    <ul>
+                      {headings.map((heading) => (
+                        <li id="heading">{heading}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+
+              {
+                <>
+                  <div className="list">
+                    <div className="list-inner">
+                      <>
+                        {resultReady && (
+                          <Results result={r} setReultReady={setResultReady} />
+                        )}
+
+                        {!resultReady && (
+                          <>
+                            <List />
+                          </>
+                        )}
+                      </>
                     </div>
-                  </Upload>
+                  </div>
+                </>
+              }
+            </>
+          }
+          <Upload trigger={popupbtn} setTrigger={setpopupbtn}>
+            <div className="mainBody">
+              {popupbtn && (
+                <>
+                  <h2>Upload Scan</h2>
+                  <div className="header">
+                    <h3>Enter Patient ID</h3>
+                    <input
+                      value={patient_id}
+                      onChange={(event) => setPatient_id(event.target.value)}
+                      id="id"
+                      type="text"
+                      placeholder="FA-2128-22"
+                    ></input>
+                  </div>
 
-                  <div id="popup-root" />
-                </li>
-                <li>
-                  <img src={profile} id="profileImage" alt="profile"></img>
-                </li>
-                <li id="dropDownArrow">
-                  <HiArrowDown />
-                </li>
-              </ul>
+                  <div>
+                    <div className="dropZone">
+                      <h1 id="dropzonetxt">Drop File here</h1>
+                      <h1 id="dropzonetxt"> or </h1>
+                      <div>
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                        />
+                        <button className="uploadBtn" onClick={openFileDialog}>
+                          {/* Replace 'your-custom-icon.svg' with your custom icon */}
+                          <img src="use an svg" alt="Up" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="button">
+                      <button id="1" onClick={() => setpopupbtn(false)}>
+                        Cancel
+                      </button>
+                      <button id="2" onClick={() => handleFileUpload()}>
+                        Start
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          </nav>
-
-          <div className="mainList">
-            <ul>
-              {headings.map((heading) => (
-                <li id="heading">{heading}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="list">
-            <div className="list-inner">
-              <>
-                {/* <Results/> */}
-                {/* <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/>
-              <List/> */}
-              </>
-            </div>
-          </div>
+          </Upload>
+          
         </div>
       </div>
     </>

@@ -18,8 +18,6 @@ function Login() {
     try {
       const response_data = await loginUser(email, password);
       
-      
-      
       if (response_data.email || response_data.password){
         
         if (response_data.email) {alert(response_data.email[0])}
@@ -45,6 +43,7 @@ function Login() {
   return (
     <>
       <div className="overlay  overlay_0">
+
         <div className="logIn">
           <div className="logIn_text">
             <h1>Log In</h1>
@@ -80,7 +79,7 @@ function Login() {
           <div className="logIN_button">
             <button id="l_button" onClick={handleLoginClick}>
 
-              Log In{" "}
+              Log In
             </button>
           </div>
 
@@ -88,6 +87,7 @@ function Login() {
             <div className="forgot_password">
               <h5>forgot password?</h5>
             </div>
+       
 
             <Link to="/signup">
               <div className="signUp_link">

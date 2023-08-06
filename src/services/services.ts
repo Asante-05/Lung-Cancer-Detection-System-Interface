@@ -1,6 +1,6 @@
 // authService.js
-import axios from 'axios';
 
+// const [result, setResults] = useContext(StateProvider)
 
 
 let feedback_fromLogIN = null
@@ -9,7 +9,11 @@ let feedback_fromUpload = null
 
 
 
+// setResults(prevState => ([...prevState, data]));
 
+export const addResultToList = () => {
+
+}
 
 
 
@@ -18,22 +22,24 @@ export const uploadFile = (patient_id: string, image: File) => {
 
 
   const patient_formData = new FormData();
-  patient_formData.append('patient', patient_id);
+  patient_formData.append('patient_id', patient_id);
   patient_formData.append('image', image);
 
-  // console.log(patient_formData.get('image'))
-  
-
-  // Replace 'your-upload-url' with the actual endpoint to upload the file on your server
   return fetch('http://127.0.0.1:8000/patient/analyse/', {
     method: 'POST',
     body: patient_formData,
   })
-    .then((response) => response.json())
-    .catch((error) => {
+    .then((response) => response.json()
+    ).catch((error) => {
+
       throw new Error('Error sending file to server:', error);
     });
+
+
+    
 };
+
+
 
 
 

@@ -2,9 +2,7 @@ body{
     background-image: url("/src/assets/pre.jpg");
     background-size: cover; 
     background-repeat: no-repeat;
-    overflow: hidden;
-    
-  
+    overflow: hidden; 
 }
 
 .overlay_0 {
@@ -15,17 +13,14 @@ body{
 }
 
 .logIn {
- 
     margin-left: 50%;
     margin-top: 6%;
-    
     display: flex;
     width: 350px;
     height: auto;
     padding: 40px 25px;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    
     gap: 8px;
     border-radius: 12px;
     background: #FFF;
@@ -160,21 +155,21 @@ background: #FAFAFA;
 
 
 
-.logIn .logIn_button{
+.logIn .logIN_button{
     display: flex;
-    padding: 9px 16px;
+    padding: 9px 6px;
     justify-content: center;
     align-items: center;
     align-self: stretch;
-
+    
     border-radius: 5px;
     background: #3360FF;
 }
-.logIn .logIn_button #l_button{
+.logIn .logIN_button #l_button{
     width: 100%;
     height: 20%;
     border: none;
-
+    
     background-color: transparent;
 
     color: var(--white, #FFF);
@@ -187,10 +182,17 @@ background: #FAFAFA;
     text-transform: uppercase;
 }
 
-
-.logIn .footer .forgot_password {
-    columns: black;
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
 }
+.footer .forgot_password {
+    max-height: 20px;
+}
+
 
 .logIn .footer .signUp_link {
     color: #000;

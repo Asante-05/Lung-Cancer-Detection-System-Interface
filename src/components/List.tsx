@@ -1,7 +1,16 @@
+import { useContext, useState } from 'react';
 import './List.css'
+import { ResultsContext } from '../Context/StateProvider';
 export function List() {
+
+  const {items, addItem} = useContext(ResultsContext)
+  
+
   return (
     <>
+    {items.map((res) => {
+      return(
+
       <div>
         <div className="list_body">
           <div><span>233</span></div>
@@ -12,6 +21,10 @@ export function List() {
           <div id='list_action'><span>view</span></div>
         </div>
       </div>
+      )
+    })}
+      
+    
     </>
   );
 }
