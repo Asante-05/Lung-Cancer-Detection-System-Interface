@@ -9,11 +9,33 @@ body{
     width: 100vw;
     height: 100vh;
     background: #00000099;
+    display: flex;
+    place-items: center;
+    justify-items: center;
     position: absolute;
+}
+.img_div {
+    display: flex;
+    place-items: center;
+    justify-content: right;
+    width: 80%;
+    
+}
+.img_div img{
+    right: 10px;
+    width: 50%;
+}
+.logIn_div .logIn{
+    height: full;
+    display: flex;
+    align-content: left
+    align;
+    justify-content: left;
+    place-items: left;
 }
 
 .logIn {
-    margin-left: 50%;
+    margin-left: 20%;
     margin-top: 6%;
     display: flex;
     width: 350px;
