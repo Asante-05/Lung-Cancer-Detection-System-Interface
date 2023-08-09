@@ -15,10 +15,8 @@ body{
 }
 
 .signIn {
- 
-    margin-left: 50%;
+    margin-left: 20%;
     margin-top: 6%;
-    
     display: flex;
     width: 350px;
     height: auto;
