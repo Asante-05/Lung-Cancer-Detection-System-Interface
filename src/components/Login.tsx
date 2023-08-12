@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
-import lungLogo from "../../public/logo/lungnetcenterwhite.png";
+import lungLogo from "/logo/lungnetcenterwhite.png";
 import { Link } from "react-router-dom";
 import { loginUser } from "../services/services";
 
@@ -9,6 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [logInState, setLogInState] = useState(false);
   const [error, setError] = useState("");
+  
 
   const handleLoginClick = async (event) => {
     event.preventDefault();

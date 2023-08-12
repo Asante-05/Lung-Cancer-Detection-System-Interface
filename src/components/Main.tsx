@@ -5,7 +5,7 @@ import "reactjs-popup/dist/index.css";
 import profile from "../assets/aaa.jpeg";
 import { TfiSettings } from "react-icons/tfi";
 import { TfiDashboard } from "react-icons/tfi";
-import lungnetLogowhite from "../../public/logo/lungnetlogo white.png"
+import lungnetLogowhite from "/logo/lungnetlogo white.png"
 import { FaClipboardList } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi2";
 import { CgLogOut } from "react-icons/cg";
@@ -16,7 +16,7 @@ import { LoadingComponent } from "./LoadingCompoenet";
 import { Results } from "./Results";
 import { List } from "./List";
 import { uploadFile } from "../services/services";
-import lungnet1black from "../../public/logo/lungnet1black.png"
+import lungnet1black from "/logo/lungnet1black.png"
 
 function Main() {
   let headings = ["id", "name", "date", "RESULTS", "action"];
@@ -40,53 +40,26 @@ function Main() {
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    console.log(selectedFile)
+  };
+
+  const handleFileUpload = async () => {
+    setpopupbtn(false)
+    setLoading(true);
+    try {
+      const response = await uploadFile(patient_id, selectedFile); 
+      setR(response); 
+      console.log(r)
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+    setLoading(false);
+    setResultReady(true)
   };
 
 
-  const handleFileUpload = async (): Promise<any> => {
-    setLoading(true)
-  
-    useEffect(() => {
-
-      const fetchData = async () => {
-        try {
-          await uploadFile(patient_id, selectedFile).then((data) => setR(data))
-  
-          setLoading(false);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          setLoading(false); 
-        }
-      };
-  
-      fetchData();
-  
-  }, []);
-}
-  
 
 
-
-  // const handleFileUpload = () => {
-
-  //   if (selectedFile) {
-
-  //          useEffect(() => {
-  //             setLoading(true)
-            
-  //           uploadFile(patient_id, selectedFile) 
-            
-  //             .then((data) => {
-  //               setR(data);
-  //               setResultReady(true);
-  //             })
-  //             .catch((error) => {
-  //               alert(error);
-  //             });
-  //           })
-  //   }
-  //   setpopupbtn(false);
-  // };
 
 
   const openFileDialog = () => {
@@ -161,8 +134,8 @@ function Main() {
                 <>
                   <div className="mainList">
                     <ul>
-                      {headings.map((heading) => (
-                        <li id="heading">{heading}</li>
+                      {headings.map((heading, index) => (
+                        <li id="heading" key={index}>{heading}</li>
                         ))}
                     </ul>
                   </div>

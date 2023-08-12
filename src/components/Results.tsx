@@ -1,24 +1,20 @@
 import "./Results.css";
-import cImage from '../assets/lungImage.jpg'
+
+import cImage from "../assets/lungImage.jpg";
 import { useNavigate } from "react-router-dom";
 
 import { ResultsContext } from "../Context/StateProvider";
 import { useContext } from "react";
 
-export function Results({result, setReultReady}) {
+export function Results({ result, setReultReady }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const { items, addItem } = useContext(ResultsContext)
-  console.log(items)
+  const { items, addItem } = useContext(ResultsContext);
 
   const handleSave = () => {
-    addItem(result)
-    console.log(result)
-    setReultReady((prev) => !prev)
-    console.log(items)
- }
-
+    addItem(result);
+    setReultReady((prev) => !prev);
+  };
 
   return (
     <>
@@ -28,12 +24,10 @@ export function Results({result, setReultReady}) {
         </div>
         <div className="results_detail">
           <div className="results_img">
-
-            <img src="" alt="cancer image"></img>
+            <img src={result.image_path} alt="cancer image"></img>
           </div>
 
           <div className="results_info">
-
             <div className="results_patientInfo">
               <div id="detail_top">
                 <strong>Patient ID</strong>
@@ -42,12 +36,14 @@ export function Results({result, setReultReady}) {
                 <strong>State</strong>
                 <strong>Class</strong>
               </div>
-            
+
               <div id="detail_top">
                 <span>{result.patient_id}</span>
                 <span>{result.patient_name}</span>
                 <span>{result.gender}</span>
-                <span>{result.prediction === "Malignant" ? 'Positive' : 'Negative'}</span>
+                <span>
+                  {result.prediction === "Malignant" ? "Positive" : "Negative"}
+                </span>
                 <span>{result.prediction}</span>
               </div>
             </div>
@@ -57,7 +53,9 @@ export function Results({result, setReultReady}) {
               <textarea name="remarks"></textarea>
             </div>
             <div className="results_buttons">
-              <button id="1" onClick={handleSave}>Save</button>
+              <button id="1" onClick={handleSave}>
+                Save
+              </button>
               <button id="2">Print Results</button>
             </div>
           </div>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./SignUp.css";
 import { signupUser } from "../services/services";
-import lungLogo from "../../public/logo/lungnetcenterwhite.png";
+import lungLogo from "/logo/lungnetcenterwhite.png";
 
 
 function SignUp() {
