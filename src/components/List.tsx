@@ -8,10 +8,10 @@ export function List() {
 
   return (
     <>
-    {items.map((res) => {
+    {items.map((res, index) => {
       return(
 
-      <div>
+      <div key={index}>
         <div className="list_body">
           <div><span>233</span></div>
           <div><span>Maryan Julia</span></div>

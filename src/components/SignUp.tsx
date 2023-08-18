@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./SignUp.css";
 import { signupUser } from "../services/services";
+import lungLogo from "/logo/lungnetcenterwhite.png";
 
 
 function SignUp() {
@@ -37,6 +38,10 @@ const handleSignUpClick = async (event) => {
   return (
     <>
       <div className="overlay  overlay_0">
+        <div className="img_div">
+          <img src={lungLogo}></img>
+        </div>
+        <div className="signIn_div">
         <div className="signIn">
           <div className="signIn_text">
             <h1>Sign Up</h1>
@@ -102,6 +107,8 @@ const handleSignUpClick = async (event) => {
               </button>
             </div>
           </div>
+        </div>
+
         </div>
       </div>
     </>

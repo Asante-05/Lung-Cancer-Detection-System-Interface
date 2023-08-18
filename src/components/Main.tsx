@@ -5,17 +5,18 @@ import "reactjs-popup/dist/index.css";
 import profile from "../assets/aaa.jpeg";
 import { TfiSettings } from "react-icons/tfi";
 import { TfiDashboard } from "react-icons/tfi";
-import { AiOutlineUpload } from "react-icons/ai";
+import lungnetLogowhite from "/logo/lungnetlogo white.png"
 import { FaClipboardList } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi2";
 import { CgLogOut } from "react-icons/cg";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { LoadingComponent } from "./LoadingCompoenet";
 import { Results } from "./Results";
 import { List } from "./List";
 import { uploadFile } from "../services/services";
+import lungnet1black from "/logo/lungnet1black.png"
 
 function Main() {
   let headings = ["id", "name", "date", "RESULTS", "action"];
@@ -28,28 +29,38 @@ function Main() {
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef(null);
   const [patient_id, setPatient_id] = useState("");
+  const [loading, setLoading] = useState<boolean>(false); 
+  
+
+
   const [r, setR] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   // _________________________________________________________________________
+
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    console.log(selectedFile)
   };
 
-  const handleFileUpload = () => {
-    if (selectedFile) {
-      uploadFile(patient_id, selectedFile)
-        .then((data) => {
-          
-          setR(data);
-          setResultReady(true);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+  const handleFileUpload = async () => {
+    setpopupbtn(false)
+    setLoading(true);
+    try {
+      const response = await uploadFile(patient_id, selectedFile); 
+      setR(response); 
+      console.log(r)
+    } catch (error) {
+      console.error('Error uploading file:', error);
     }
-    setpopupbtn(false);
+    setLoading(false);
+    setResultReady(true)
   };
+
+
+
+
+
 
   const openFileDialog = () => {
     fileInputRef.current.click();
@@ -59,7 +70,10 @@ function Main() {
     <>
       <div className="main">
         <div className=" el sideBar">
-          <div className="ads">LUNGNET</div>
+
+          <div className="lungnet">
+            <img src={lungnetLogowhite} alt="lungnet"></img>
+          </div>
 
           <div className="options">
             <div className="options-top">
@@ -114,20 +128,20 @@ function Main() {
               <HiArrowDown id="dropDownArrow" />
             </div>
           </div>
-          {<div className="loading-component"><LoadingComponent /></div>}
           {
             <>
               {!resultReady && (
                 <>
                   <div className="mainList">
                     <ul>
-                      {headings.map((heading) => (
-                        <li id="heading">{heading}</li>
-                      ))}
+                      {headings.map((heading, index) => (
+                        <li id="heading" key={index}>{heading}</li>
+                        ))}
                     </ul>
                   </div>
                 </>
               )}
+              {loading && (<div className="loading-component"><LoadingComponent /></div>)}
 
               {
                 <>
@@ -137,7 +151,6 @@ function Main() {
                         {resultReady && (
                           <Results result={r} setReultReady={setResultReady} />
                         )}
-
                         {!resultReady && (
                           <>
                             <List />
@@ -179,7 +192,7 @@ function Main() {
                         />
                         <button className="uploadBtn" onClick={openFileDialog}>
                           {/* Replace 'your-custom-icon.svg' with your custom icon */}
-                          <img src="use an svg" alt="Up" />
+                          <img src={lungnet1black} alt="Up" />
                         </button>
                       </div>
                     </div>
@@ -194,6 +207,7 @@ function Main() {
                   </div>
                 </>
               )}
+              
             </div>
           </Upload>
           

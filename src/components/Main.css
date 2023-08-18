@@ -14,15 +14,13 @@
     
 }
 
-.ads {
+.lungnet {
     font-size:45px;
-    margin-left: 15%;
     margin-top: 10%;
     border-radius: 15px;
     height:40px;
     width: 220px;
     padding: 20px;
-    background-color: #fff;
     color: #0d1841;
 }
 
@@ -228,14 +226,13 @@ a {
     /* left: 260px; */
     left: 45%;
 }
+.mainBody .uploadBtn img {
+    height: 40px;
+}
 .mainBody .uploadBtn :hover{
     border: none;
     color: #f5f7ff;
-    background-color: #1e4177;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
-    font-size: 30px;
+    height: 65px;
     transition: 0.3s;
 }
 button#\32{
@@ -258,8 +255,15 @@ button#\31{
     border-radius: 3px;
     border: none;
 }
+
 .loading-component {
     position: absolute;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    padding: 50px;
+    background-color: #888a90;
+
 }
 
 
