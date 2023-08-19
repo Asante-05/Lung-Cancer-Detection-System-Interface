@@ -4,10 +4,11 @@ import cImage from "../assets/lungImage.jpg";
 import { useNavigate } from "react-router-dom";
 
 import { ResultsContext } from "../Context/StateProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export function Results({ result, setReultReady }) {
   const navigate = useNavigate();
+  const [ docRemarks, setDocRemarks] = useState('')
 
   const { items, addItem } = useContext(ResultsContext);
 
@@ -25,6 +26,7 @@ export function Results({ result, setReultReady }) {
         <div className="results_detail">
           <div className="results_img">
             <img src={result.image_path} alt="cancer image"></img>
+            {/* <img src={`data:image/jpeg;base64,${result.image_path}`} alt="Cancer Image" /> */}
           </div>
 
           <div className="results_info">
@@ -50,7 +52,7 @@ export function Results({ result, setReultReady }) {
 
             <div className="results_input">
               <h3>Remarks</h3>
-              <textarea name="remarks"></textarea>
+              <textarea value={docRemarks} onChange={(event) => setDocRemarks(event.target.value)} name="remarks"></textarea>
             </div>
             <div className="results_buttons">
               <button id="1" onClick={handleSave}>
