@@ -40,14 +40,14 @@ function Main() {
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
-    console.log(selectedFile)
   };
 
   const handleFileUpload = async () => {
     setpopupbtn(false)
     setLoading(true);
     try {
-      const response = await uploadFile(patient_id, selectedFile); 
+      const response = await uploadFile(patient_id, selectedFile);
+       console.log(response)
       setR(response); 
       console.log(r)
     } catch (error) {
@@ -57,6 +57,7 @@ function Main() {
     setResultReady(true)
   };
 
+  
 
 
 
@@ -142,7 +143,6 @@ function Main() {
                 </>
               )}
               {loading && (<div className="loading-component"><LoadingComponent /></div>)}
-
               {
                 <>
                   <div className="list">
@@ -154,6 +154,7 @@ function Main() {
                         {!resultReady && (
                           <>
                             <List />
+                           
                           </>
                         )}
                       </>

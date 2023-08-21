@@ -1,46 +1,36 @@
-import "./Results.css";
+// import "./Results.css";
 
-import { useNavigate } from "react-router-dom";
+import { getScanInformation } from "../services/services";
 
-import { ResultsContext } from "../Context/StateProvider";
-import { useContext, useState } from "react";
 
-import { addResultToDatabase } from "../services/services";
+export function View({scan_id, setView}) {
 
-export function Results({ result, setReultReady }) {
-  const navigate = useNavigate();
-  const [docRemarks, setDocRemarks] = useState("");
+  const handleInfoRetrieve = async () => {
+    try {
+      const response = await getScanInformation(scan_id);
+       console.log(response)
+  
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
 
-  const { items, addItem } = useContext(ResultsContext);
-
-  const handleSave = () => {
-    addItem(result);
-    setReultReady((prev) => !prev);
-
-    // add results together with remarks
-
-    addResultToDatabase(result, docRemarks);
   };
 
-  const encodePrefix = "data:image/jpeg;base64,";
-  let encodedImage = "";
 
-  if (result === null) {
-    alert("Error, no response from backend");
-  } else {
-    encodedImage = encodePrefix + result.image_base64;
-  }
 
+
+
+  
   return (
     <>
       <div className="results_mainBody">
         <div className="results_header">
-          <h1>Results</h1>
+          <h1>Scan Information</h1>
         </div>
         <div className="results_detail">
           <div className="results_img">
-            <img src={encodedImage} alt="cancer image"></img>
-
+            {/* <img src={} alt="cancer image"></img> */}
+            
             {/* <img src={`data:image/jpeg;base64,${result.image_path}`} alt="Cancer Image" /> */}
           </div>
 
@@ -54,7 +44,7 @@ export function Results({ result, setReultReady }) {
                 <strong>Class</strong>
               </div>
 
-              <div id="detail_top">
+              {/* <div id="detail_top">
                 <span>{result.patient_id}</span>
                 <span>{result.patient_name}</span>
                 <span>{result.gender}</span>
@@ -62,26 +52,42 @@ export function Results({ result, setReultReady }) {
                   {result.prediction === "Malignant" ? "Positive" : "Negative"}
                 </span>
                 <span>{result.prediction}</span>
-              </div>
+              </div> */}
             </div>
 
             <div className="results_input">
               <h3>Remarks</h3>
-              <textarea
-                value={docRemarks}
-                onChange={(event) => setDocRemarks(event.target.value)}
-                name="remarks"
-              ></textarea>
+              <textarea ></textarea>
             </div>
             <div className="results_buttons">
-              <button id="1" onClick={handleSave}>
-                Save
+              <button id="1" onClick={setView}>
+                Return
               </button>
               <button id="2">Print Results</button>
             </div>
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </>
   );
 }
