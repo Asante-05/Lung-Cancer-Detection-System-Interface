@@ -1,7 +1,9 @@
 // import "./Results.css";
 
+import React, { useRef } from "react";
+import ReactToPrint from "react-to-print";
+const  View = React.forwardRef(({response, setView}, ref) => {
 
-export function View({response, setView}) {
 
   const encodePrefix = "data:image/jpeg;base64,";
   let encodedImage = "";
@@ -12,10 +14,11 @@ export function View({response, setView}) {
     encodedImage = encodePrefix + response.image_base64;
   }
 
-  
+
+   
   return (
     <>
-  <div className="results_mainBody">
+  <div className="results_mainBody" ref={ref}>
         <div className="results_header">
           <h1>Scan Information</h1>
         </div>
@@ -39,7 +42,7 @@ export function View({response, setView}) {
                 <span>{response.patient_name}</span>
                 <span>{response.gender}</span>
                 <span>
-                  {response.prediction === "Malignant" ? "Positive" : "Negative"}
+                  {response.status}
                 </span>
                 <span>{response.patient_class}</span>
               </div>
@@ -49,16 +52,42 @@ export function View({response, setView}) {
               <h3>Remarks</h3>
               <p>{response.remarks}</p>
             </div>
+
             <div className="results_buttons">
               <button id="1" onClick={setView}>
                 Return
               </button>
-              <button id="2">Print Results</button>
+          
+
+             
             </div>
+            
           </div>
         </div>
       </div>
 
     </>
   );
-}
+})
+
+const PrintComponent = ({response, setView}) => {
+  const componentRef = useRef(null);
+
+  return (
+    <div>
+      <View ref={componentRef} response={response} setView = {setView} />
+
+      <PrintButton componentRef={componentRef} />
+    </div>
+  );
+};
+
+const PrintButton = ({ componentRef }) => (
+  <ReactToPrint
+    trigger={() => <button>Print Results</button>}
+    content={() => componentRef.current}
+  />
+);
+
+
+export default PrintComponent

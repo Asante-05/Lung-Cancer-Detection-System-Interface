@@ -3,22 +3,22 @@ import "./Results.css";
 import { useNavigate } from "react-router-dom";
 
 import { ResultsContext } from "../Context/StateProvider";
-import { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import { addResultToDatabase } from "../services/services";
+import ReactToPrint from "react-to-print";
 
-export function Results({ result, setReultReady }) {
+const Results = React.forwardRef(({ result, setReultReady }, ref) => {
+
+  
+
+
   const navigate = useNavigate();
   const [docRemarks, setDocRemarks] = useState("");
-
   const { items, addItem } = useContext(ResultsContext);
-
   const handleSave = () => {
     addItem(result);
     setReultReady((prev) => !prev);
-
-    // add results together with remarks
-
     addResultToDatabase(result, docRemarks);
   };
 
@@ -33,7 +33,7 @@ export function Results({ result, setReultReady }) {
 
   return (
     <>
-      <div className="results_mainBody">
+      <div className="results_mainBody" ref = {ref}>
         <div className="results_header">
           <h1>Results</h1>
         </div>
@@ -59,7 +59,7 @@ export function Results({ result, setReultReady }) {
                 <span>{result.patient_name}</span>
                 <span>{result.gender}</span>
                 <span>
-                  {result.prediction === "Malignant" ? "Positive" : "Negative"}
+                  {result.status}
                 </span>
                 <span>{result.prediction}</span>
               </div>
@@ -77,11 +77,32 @@ export function Results({ result, setReultReady }) {
               <button id="1" onClick={handleSave}>
                 Save
               </button>
-              <button id="2">Print Results</button>
+          
+              
             </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+})
+
+const ResultPrintComponent = ({result, setReultReady}) => {
+  const componentRef = useRef(null);
+
+  return (
+    <div>
+      <Results ref={componentRef} result={result} setReultReady = {setReultReady} />
+
+      <PrintButton componentRef={componentRef} />
+    </div>
+  );
+};
+
+const PrintButton = ({ componentRef }) => (
+  <ReactToPrint
+    trigger={() => <button>Print Results</button>}
+    content={() => componentRef.current}
+  />
+);
+export default ResultPrintComponent

@@ -44,6 +44,22 @@ export const getScanInformation = async (scan_id: string) => {
   }
 
 };
+export const deleteFromDataBase = async (scan_id: string) => {
+
+  const view_formData = new FormData();
+  view_formData.append('scan_id', scan_id);
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/patient/delete-scan/', {
+      method: 'DELETE',
+      body: view_formData,
+    });
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error deleting file in server:', error);
+  }
+
+};
 
 export const uploadFile = (patient_id: string, image: File) => {
 
@@ -51,7 +67,6 @@ export const uploadFile = (patient_id: string, image: File) => {
   patient_formData.append('patient_id', patient_id);
   patient_formData.append('image', image);
   
-
   return fetch('http://127.0.0.1:8000/patient/analyse/', {
     method: 'POST',
     body: patient_formData,

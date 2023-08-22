@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { LoadingComponent } from "./LoadingCompoenet";
-import { Results } from "./Results";
+import ResultPrintComponent, { Results } from "./Results";
 import { List } from "./List";
 import { uploadFile } from "../services/services";
 import lungnet1black from "/logo/lungnet1black.png"
@@ -47,14 +47,21 @@ function Main() {
     setLoading(true);
     try {
       const response = await uploadFile(patient_id, selectedFile);
-       console.log(response)
-      setR(response); 
-      console.log(r)
+
+      if (response.non_field_errors) {
+        alert(response.non_field_errors[0])
+        setLoading(false)
+      } else {
+        setR(response); 
+        setLoading(false);
+        setResultReady(true)
+      }
+
     } catch (error) {
-      console.error('Error uploading file:', error);
+      alert('Error uploading file:', error);
+      setLoading(false);
     }
-    setLoading(false);
-    setResultReady(true)
+    
   };
 
   
@@ -149,7 +156,7 @@ function Main() {
                     <div className="list-inner">
                       <>
                         {resultReady && (
-                          <Results result={r} setReultReady={setResultReady} />
+                          <ResultPrintComponent result={r} setReultReady={setResultReady} />
                         )}
                         {!resultReady && (
                           <>
