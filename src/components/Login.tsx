@@ -29,7 +29,7 @@ function Login() {
         // window.location.href = '/Main'
       }
       if (!response_data.ok) {
-        console.log(response_data.non_field_errors[0]);
+        alert(response_data.non_field_errors[0]);
       }
     } catch (error) {}
   };

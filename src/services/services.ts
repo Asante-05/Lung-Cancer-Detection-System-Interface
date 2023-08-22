@@ -1,44 +1,82 @@
-// authService.js
-
-// const [result, setResults] = useContext(StateProvider)
-
-
 let feedback_fromLogIN = null
-let feedback_fromUpload = null
 
 
 
 
-// setResults(prevState => ([...prevState, data]));
 
-export const addResultToList = () => {
+export const addResultToDatabase = async (result: object, remark: string) => {
+
+  const result_formData = new FormData();
+
+  result_formData.append('scan_id', result.scan_id);
+  result_formData.append('patient_id', result.patient_id);
+  result_formData.append('remarks', remark);
+
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/patient/save/', {
+      method: 'POST',
+      body: result_formData,
+    });
+    return response.json();
+  } catch (error) {
+    throw new Error('Error saving remarks:', error);
+  }
 
 }
 
 
 
 
-export const uploadFile = (patient_id: string, image: File) => {
+export const getScanInformation = async (scan_id: string) => {
 
+  const view_formData = new FormData();
+  view_formData.append('scan_id', scan_id);
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/patient/viewdetails/', {
+      method: 'POST',
+      body: view_formData,
+    });
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error sending file to server:', error);
+  }
+
+};
+export const deleteFromDataBase = async (scan_id: string) => {
+
+  const view_formData = new FormData();
+  view_formData.append('scan_id', scan_id);
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/patient/delete-scan/', {
+      method: 'DELETE',
+      body: view_formData,
+    });
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error deleting file in server:', error);
+  }
+
+};
+
+export const uploadFile = (patient_id: string, image: File) => {
 
   const patient_formData = new FormData();
   patient_formData.append('patient_id', patient_id);
   patient_formData.append('image', image);
-
+  
   return fetch('http://127.0.0.1:8000/patient/analyse/', {
     method: 'POST',
     body: patient_formData,
   })
     .then((response) => response.json()
     ).catch((error) => {
-
       throw new Error('Error sending file to server:', error);
     });
 
-
-    
 };
-
 
 
 
@@ -48,8 +86,6 @@ export async function loginUser(user_email: string, user_password: string) {
     email: user_email,
     password: user_password
   };
-
-  
   try {
      const response = await fetch('http://127.0.0.1:8000/auth/login/', {
       method: 'POST',
@@ -73,9 +109,6 @@ export async function loginUser(user_email: string, user_password: string) {
 
 };
 export default feedback_fromLogIN
-
-
-
 
 
 
@@ -110,17 +143,6 @@ export async function signupUser (signup_email:string ,signup_username:string, s
   }
 
 };
-
-
-
-
-
-// upload
-
-
-
-
-
 
 
 
