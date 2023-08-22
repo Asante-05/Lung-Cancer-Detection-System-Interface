@@ -5,6 +5,8 @@ import './List.css'
 export function List() {
 
   const [data, setData] = useState([]);
+  const [viewdata, setViewData] = useState();
+  
   const [viewParticular,setViewParticular] = useState(false);
 
 
@@ -22,21 +24,44 @@ export function List() {
     };
   }, []);
 
+ 
 
-  console.log(data)
 
-  const [selectedItem, setSelectedItem] = useState();
+async function getScanInformation (scan_id: string) {
 
-  const handleItemClick = (item) => {
-    setSelectedItem(item)
-    setView()
-    console.log(selectedItem)
+  const view_formData = new FormData();
+  view_formData.append('scan_id', scan_id);
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/patient/viewdetails/', {
+      method: 'POST', 
+      body: view_formData,
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error sending form data:', error);
+    throw error;
   }
-  const setView = () => {
-    setViewParticular(previewParticular => !previewParticular);
-  };
-  
+}
 
+
+
+const setView = () => {
+  setViewParticular(previewParticular => !previewParticular);
+};
+
+async function handleItemClick(item) {
+  try {
+    const viewResponse = await getScanInformation(item.scan_id);
+    setViewData(viewResponse)
+    setView()
+  } catch (error) {
+    throw new Error("An error was encountered", error)
+  }
+}
+
+console.log(viewdata)
   return (
     <>
     { !viewParticular && data.map((res, index) => {
@@ -53,7 +78,7 @@ export function List() {
       )
     })}
     {
-       viewParticular && <View scan_id={selectedItem.scan_id} setView = {setView}/>
+       viewParticular && <View response={viewdata} setView = {setView}/>
     }
       
     

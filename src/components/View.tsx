@@ -1,37 +1,27 @@
 // import "./Results.css";
 
-import { getScanInformation } from "../services/services";
 
+export function View({response, setView}) {
 
-export function View({scan_id, setView}) {
+  const encodePrefix = "data:image/jpeg;base64,";
+  let encodedImage = "";
 
-  const handleInfoRetrieve = async () => {
-    try {
-      const response = await getScanInformation(scan_id);
-       console.log(response)
-  
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
-
-  };
-
-
-
-
+  if (response === null) {
+    alert("Error, no response from backend");
+  } else {
+    encodedImage = encodePrefix + response.image_base64;
+  }
 
   
   return (
     <>
-      <div className="results_mainBody">
+  <div className="results_mainBody">
         <div className="results_header">
           <h1>Scan Information</h1>
         </div>
         <div className="results_detail">
           <div className="results_img">
-            {/* <img src={} alt="cancer image"></img> */}
-            
-            {/* <img src={`data:image/jpeg;base64,${result.image_path}`} alt="Cancer Image" /> */}
+          <img src={encodedImage} alt="cancer image"></img>
           </div>
 
           <div className="results_info">
@@ -44,20 +34,20 @@ export function View({scan_id, setView}) {
                 <strong>Class</strong>
               </div>
 
-              {/* <div id="detail_top">
-                <span>{result.patient_id}</span>
-                <span>{result.patient_name}</span>
-                <span>{result.gender}</span>
+              <div id="detail_top">
+                <span>{response.patient_id}</span>
+                <span>{response.patient_name}</span>
+                <span>{response.gender}</span>
                 <span>
-                  {result.prediction === "Malignant" ? "Positive" : "Negative"}
+                  {response.prediction === "Malignant" ? "Positive" : "Negative"}
                 </span>
-                <span>{result.prediction}</span>
-              </div> */}
+                <span>{response.patient_class}</span>
+              </div>
             </div>
 
             <div className="results_input">
               <h3>Remarks</h3>
-              <textarea ></textarea>
+              <p>{response.remarks}</p>
             </div>
             <div className="results_buttons">
               <button id="1" onClick={setView}>
@@ -68,25 +58,6 @@ export function View({scan_id, setView}) {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </>
   );

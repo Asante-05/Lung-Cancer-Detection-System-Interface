@@ -32,7 +32,6 @@ export const getScanInformation = async (scan_id: string) => {
 
   const view_formData = new FormData();
   view_formData.append('scan_id', scan_id);
-  
 
   try {
     const response = await fetch('http://127.0.0.1:8000/patient/viewdetails/', {
