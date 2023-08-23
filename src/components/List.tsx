@@ -1,27 +1,76 @@
 import { useEffect, useState } from "react";
-import deleteSVG from "/icons8-delete.svg";
+
 import PrintComponent, { View } from "./View";
 import "./List.css";
 import { deleteFromDataBase } from "../services/services";
+import Confirmation from  './confirmation'
 
 export function List() {
   const [data, setData] = useState([]);
   const [viewdata, setViewData] = useState();
 
+  const [ldelete, setLDelete] = useState(false);
   const [viewParticular, setViewParticular] = useState(false);
 
-  useEffect(() => {
-    // This function will run after the component renders
-    // Simulate fetching data from an API
-    fetch("http://127.0.0.1:8000/patient/scanresults/")
-      .then((response) => response.json())
-      .then((data) => setData(data.results));
-    // Cleanup function (optional)
-    return () => {
-      // This function will run before the component is unmounted
-      // It's used to clean up any resources or subscriptions
-    };
-  }, [data]);
+  // useEffect(() => {
+  //   // This function will run after the component renders
+  //   // Simulate fetching data from an API
+  //   fetch("http://127.0.0.1:8000/patient/scanresults/")
+  //     .then((response) => response.json())
+  //     .then((data) => setData(data.results));
+  //   // Cleanup function (optional)
+  //   return () => {
+  //     // This function will run before the component is unmounted
+  //     // It's used to clean up any resources or subscriptions
+  //   };
+
+  // }, []);
+
+
+
+
+  
+    const [shouldFetch, setShouldFetch] = useState(true);
+  
+    useEffect(() => {
+      // Initialize WebSocket connection when component mounts
+      const socket = new WebSocket('ws://your-backend-websocket-url');
+  
+      socket.onmessage = (event) => {
+        // Handle messages received from the backend
+        const message = JSON.parse(event.data);
+        if (message.type === 'dataChanged') {
+          // Trigger a data fetch when a change is detected
+          setShouldFetch(true);
+        }
+      };
+  
+      return () => {
+        socket.close();
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (shouldFetch) {
+        // Fetch data from the database
+        fetch("http://127.0.0.1:8000/patient/scanresults/")
+          .then((response) => response.json())
+          .then((data) => {
+            setData(data.results);
+            // Reset the trigger after fetching
+            setShouldFetch(false);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            // Reset the trigger even if there's an error
+            setShouldFetch(false);
+          });
+      }
+    }, [shouldFetch]);
+  
+  
+
+  
 
   async function getScanInformation(scan_id: string) {
     const view_formData = new FormData();
@@ -51,21 +100,22 @@ export function List() {
     try {
       const viewResponse = await getScanInformation(item.scan_id);
       setViewData(viewResponse);
-      console.log(viewResponse);
       setView();
     } catch (error) {
       throw new Error("An error was encountered", error);
     }
   }
 
-  async function handleDeleteClick(item) {
-    try {
-      const deleteResponse = await deleteFromDataBase(item.scan_id);
-      alert(deleteResponse.message)
-    } catch (error) {
-      throw new Error("An error was encountered while deleting from the database", error);
-    }
+
+  const handleDeleteModalClose = () => {setLDelete(false)}
+
+
+  function handleDeleteModalOpen () {
+    setLDelete(true)
+
   }
+
+
 
   return (
     <>
@@ -94,8 +144,15 @@ export function List() {
                     <span onClick={() => handleItemClick(res)}>view</span>{" "}
                   </div>
 
-                  <div onClick={() => handleDeleteClick(res)}>
+                  <div >
+
+                  <Confirmation  onClose={handleDeleteModalClose} isOpen={ldelete} res = {res} onConfirm = {handleDeleteModalClose}
+                  >
+                    
+                  </Confirmation>
+
                     <svg
+                      onClick={handleDeleteModalOpen}
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 100 100"
                       width="20px"

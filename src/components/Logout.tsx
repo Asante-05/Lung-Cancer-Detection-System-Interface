@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import "./Logout.css";
 import { Link } from "react-router-dom";
 

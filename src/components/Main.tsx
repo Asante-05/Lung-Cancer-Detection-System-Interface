@@ -21,7 +21,6 @@ import lungnet1black from "/logo/lungnet1black.png"
 function Main() {
   let headings = ["id", "name", "date", "RESULTS", "action"];
 
-  // _________________________________________________________________________
 
   const [popupbtn, setpopupbtn] = useState(false);
   const [logoutbtn, setlogoutbtn] = useState(false);
@@ -35,7 +34,6 @@ function Main() {
 
   const [r, setR] = useState(null);
 
-  // _________________________________________________________________________
 
 
   const handleFileChange = (event) => {
